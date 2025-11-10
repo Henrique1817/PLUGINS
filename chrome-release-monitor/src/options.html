@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Configurações - Library Release Monitor</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Bibliotecas monitoradas</h1>
+      <form id="settings-form">
+        <label>
+          Frequência (minutos)
+          <input type="number" id="interval" min="15" step="15" required />
+        </label>
+        <section>
+          <h2>Lista de bibliotecas</h2>
+          <div id="library-list"></div>
+          <button id="add-library" type="button">Adicionar biblioteca</button>
+        </section>
+        <button type="submit">Salvar</button>
+      </form>
+      <template id="library-item-template">
+        <div class="library-item">
+          <input class="lib-name" placeholder="nome" required />
+          <select class="lib-source">
+            <option value="npm">npm</option>
+            <option value="pypi">PyPI</option>
+            <option value="crates">crates.io</option>
+          </select>
+          <button class="remove" type="button">Remover</button>
+        </div>
+      </template>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

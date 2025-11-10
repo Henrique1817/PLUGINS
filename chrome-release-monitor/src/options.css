@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 16px;
+  max-width: 640px;
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+label,
+section {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.library-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.lib-name {
+  flex: 1 1 auto;
+}
+
+.remove {
+  background-color: #d9534f;
+  border: none;
+  color: #fff;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+button {
+  padding: 6px 12px;
+}
