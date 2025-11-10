@@ -18,18 +18,34 @@ optionsButton.addEventListener("click", () => {
   chrome.runtime.openOptionsPage();
 });
 
+// Render the list of libraries and their versions
 function renderLibraries(libraries) {
   listElement.innerHTML = "";
+  if (!libraries || libraries.length === 0) {
+    const emptyItem = document.createElement("li");
+    emptyItem.className = "empty-state";
+    emptyItem.textContent = "Nenhuma biblioteca monitorada ainda.";
+    listElement.appendChild(emptyItem);
+    return;
+  }
   libraries.forEach((lib) => {
     const item = document.createElement("li");
+    item.className = "library-item";
     const link = document.createElement("a");
+    link.className = "lib-link";
     link.textContent = `${lib.name} `;
     link.href = lib.releaseUrl || getRegistryUrl(lib);
-    // link.target = "_blank";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
 
     const versionSpan = document.createElement("span");
     versionSpan.className = "version";
-    versionSpan.textContent = lib.lastKnownVersion ? `(${lib.lastKnownVersion})` : "(desconhecida)";
+    if (lib.lastKnownVersion) {
+      versionSpan.textContent = `v${lib.lastKnownVersion}`;
+    } else {
+      versionSpan.textContent = "sem dados";
+      versionSpan.classList.add("is-unknown");
+    }
 
     item.appendChild(link);
     item.appendChild(versionSpan);

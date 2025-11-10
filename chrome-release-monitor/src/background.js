@@ -22,7 +22,7 @@ async function getSettings() {
 
 // Save settings to storage
 async function saveSettings(settings) {
-  return new Promise((resolve) => {
+    return new Promise((resolve) => {
     chrome.storage.sync.set({ [SETTINGS_KEY]: settings }, resolve);
   });
 }

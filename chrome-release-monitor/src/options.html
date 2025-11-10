@@ -11,14 +11,14 @@
       <form id="settings-form">
         <label>
           Frequência (minutos)
-          <input type="number" id="interval" min="15" step="15" required />
+          <input type="number" id="interval" min="15" step="15" class="input-field" required />
         </label>
         <section>
           <h2>Lista de bibliotecas</h2>
           <div id="library-list"></div>
-          <button id="add-library" type="button">Adicionar biblioteca</button>
+          <button id="add-library" class="btn btn-secondary" type="button">Adicionar biblioteca</button>
         </section>
-        <button type="submit">Salvar</button>
+        <button class="btn btn-primary" type="submit">Salvar</button>
       </form>
       <template id="library-item-template">
         <div class="library-item">
@@ -28,7 +28,7 @@
             <option value="pypi">PyPI</option>
             <option value="crates">crates.io</option>
           </select>
-          <button class="remove" type="button">Remover</button>
+          <button class="btn btn-danger remove" type="button">Remover</button>
         </div>
       </template>
     </main>

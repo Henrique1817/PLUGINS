@@ -39,6 +39,7 @@ form.addEventListener("submit", (event) => {
   });
 });
 
+// Render the list of libraries in the form
 function renderLibraries() {
   listContainer.innerHTML = "";
   currentLibraries.forEach((lib, index) => {
