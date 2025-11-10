@@ -1,0 +1,23 @@
+# Chrome extension build artifacts
+chrome-release-monitor.crx
+chrome-release-monitor.pem
+
+# OS-specific junk
+Thumbs.db
+.DS_Store
+
+# Node executables / lockfiles if you add tooling later
+node_modules/
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Logs and temp files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+*.tmp
+
+# VS Code settings
+.vscode/
