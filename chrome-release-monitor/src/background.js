@@ -120,19 +120,24 @@ async function checkLibraries(settings) {
     for (let i = 0; i < settings.libraries.length; i += 1) {
         const lib = settings.libraries[i];
     try {
-      const latest = await fetchLatestRelease(lib);
+      const normalizedName = (lib.name || "").toLowerCase().trim();
+      if(!normalizedName) {
+        continue;
+      }
+      const normalizedLib = { ...lib, name: normalizedName };
+      const latest = await fetchLatestRelease(normalizedLib);
       if (!latest) {
         continue;
     }
-    if (!lib.lastKnownVersion || isCriticalUpdate(lib.lastKnownVersion, latest.version)) {
-        notifyRelease(lib, latest);
+    if (!normalizedLib.lastKnownVersion || isCriticalUpdate(normalizedLib.lastKnownVersion, latest.version)) {
+        notifyRelease(normalizedLib, latest);
     }
-    updated.libraries[i] = { ...lib, lastKnownVersion: latest.version, releaseUrl: latest.url };
+    updated.libraries[i] = { ...normalizedLib, lastKnownVersion: latest.version, releaseUrl: latest.url };
 } catch (error) {
       console.error(`Failed to check ${lib.name}:`, error);
     }
 }
-await saveSettings(updated);
+  await saveSettings(updated);
 }
 
 // Handle alarm events to check for new releases

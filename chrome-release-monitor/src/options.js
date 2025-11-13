@@ -75,7 +75,7 @@ function collectLibraries() {
     .map((lib) => ({
       ...lib,
       id: lib.id || crypto.randomUUID(),
-      name: lib.name.trim(),
+      name: lib.name.trim().toLowerCase(),
       lastKnownVersion: lib.lastKnownVersion || null,
       releaseUrl: lib.releaseUrl || null
     }));

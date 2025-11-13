@@ -29,19 +29,20 @@ function renderLibraries(libraries) {
     return;
   }
   libraries.forEach((lib) => {
+    const normalizedLib = { ...lib, name: (lib.name || "").toLowerCase().trim() };
     const item = document.createElement("li");
     item.className = "library-item";
     const link = document.createElement("a");
     link.className = "lib-link";
-    link.textContent = `${lib.name} `;
-    link.href = lib.releaseUrl || getRegistryUrl(lib);
+    link.textContent = `${normalizedLib.name} `;
+    link.href = normalizedLib.releaseUrl || getRegistryUrl(normalizedLib);
     link.target = "_blank";
     link.rel = "noopener noreferrer";
 
     const versionSpan = document.createElement("span");
     versionSpan.className = "version";
-    if (lib.lastKnownVersion) {
-      versionSpan.textContent = `v${lib.lastKnownVersion}`;
+    if (normalizedLib.lastKnownVersion) {
+      versionSpan.textContent = `v${normalizedLib.lastKnownVersion}`;
     } else {
       versionSpan.textContent = "sem dados";
       versionSpan.classList.add("is-unknown");
