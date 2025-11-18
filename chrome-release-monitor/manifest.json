@@ -3,11 +3,19 @@
   "name": "Library Release Monitor",
   "version": "0.1.0",
   "description": "Monitor favorite libraries and get notified about critical releases.",
-  "permissions": ["storage", "alarms", "notifications"],
+  "permissions": ["storage", "alarms", "notifications", "tabs", "activeTab"],
   "host_permissions": [
     "https://registry.npmjs.org/*",
     "https://pypi.org/pypi/*",
     "https://crates.io/api/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/inject-panel.js"],
+      "css": ["src/inject-panel.css"],
+      "run_at": "document_end"
+    }
   ],
   "background": {
     "service_worker": "src/background.js"

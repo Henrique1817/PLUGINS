@@ -1,0 +1,75 @@
+#release-monitor-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 0;
+  z-index: 2147483646;
+  background: #ffffff;
+  box-shadow: -4px 0 16px rgba(15, 23, 42, 0.18);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #e2e8f0;
+  transition: width 0.26s ease;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+#release-monitor-panel.rm-open {
+  width: 380px;
+}
+
+#release-monitor-panel .rm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#release-monitor-panel .rm-title {
+  letter-spacing: 0.4px;
+}
+
+#release-monitor-panel .rm-close {
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  color: inherit;
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+#release-monitor-panel .rm-close:hover {
+  background: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px);
+}
+
+#release-monitor-panel .rm-frame {
+  flex: 1 1 auto;
+  border: none;
+  width: 100%;
+  background: #ffffff;
+}
+
+#release-monitor-panel.rm-open .rm-frame {
+  animation: rmFadeIn 0.2s ease;
+}
+
+@keyframes rmFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

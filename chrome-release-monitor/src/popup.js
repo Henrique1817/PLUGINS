@@ -15,7 +15,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 optionsButton.addEventListener("click", () => {
-  chrome.runtime.openOptionsPage();
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const [activeTab] = tabs || [];
+    if (!activeTab) {
+      chrome.runtime.openOptionsPage();
+      return;
+    }
+
+    chrome.tabs.sendMessage(activeTab.id, { type: "toggle-panel" }, () => {
+      if (chrome.runtime.lastError) {
+        // Content script ainda não carregou (ex.: página chrome://). Faz fallback.
+        chrome.runtime.openOptionsPage();
+      }
+    });
+  });
 });
 
 // Render the list of libraries and their versions

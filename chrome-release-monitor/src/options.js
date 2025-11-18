@@ -15,7 +15,10 @@ function init() {
       return;
     }
     intervalInput.value = settings.intervalMinutes;
-    currentLibraries = (settings.libraries || []).map((lib) => ({ ...lib }));
+    currentLibraries = (settings.libraries || []).map((lib) => ({
+      ...lib,
+      name: (lib.name || "").trim().toLowerCase()
+    }));
     renderLibraries();
   });
 }
@@ -53,7 +56,9 @@ function renderLibraries() {
     sourceSelect.value = lib.source;
 
     nameInput.addEventListener("input", (event) => {
-      currentLibraries[index].name = event.target.value.trim();
+      const normalized = event.target.value.toLowerCase();
+      event.target.value = normalized;
+      currentLibraries[index].name = normalized.trim();
     });
 
     sourceSelect.addEventListener("change", (event) => {
